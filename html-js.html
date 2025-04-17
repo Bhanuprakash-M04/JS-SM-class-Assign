@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      div {
+        color: black;
+        font-size: 50px;
+      }
+      .add {
+        color: white;
+        background-color: green;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 15px;
+      }
+      .minus {
+        color: white;
+        background-color: red;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mydiv"></div>
+    <button class="add">Increment</button>
+    <button class="minus">Decrement</button>
+    <script>
+      let counter = 0;
+      const displayElement = document.querySelector(".mydiv");
+      displayElement.innerHTML = counter;
+      const incrementElement = document.querySelector(".add");
+      incrementElement.addEventListener("click", () => {
+        counter++;
+        displayElement.innerHTML = counter;
+      });
+      const decrementElement = document.querySelector(".minus");
+      decrementElement.addEventListener("click", () => {
+        if (counter <= 0) alert("cannot go negative");
+        else counter--;
+        displayElement.innerHTML = `${counter}`;
+      });
+    </script>
+  </body>
+</html>
