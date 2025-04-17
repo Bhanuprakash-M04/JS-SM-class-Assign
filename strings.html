@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function findLongestPalindrome(str) {
+        let n = str.length;
+        let longestPalindrome = "";
+        for (let i = 0; i < n; i++) {
+          let o = checkOdd(i, i, str);
+          let e = checkEven(i, i + 1, str);
+          if (o.length >= e.length) {
+            if (o.length >= longestPalindrome.length) longestPalindrome = o;
+          } else if (e.length >= o.length) {
+            if (e.length >= longestPalindrome.length) longestPalindrome = e;
+          }
+        }
+        return longestPalindrome;
+      }
+      function checkOdd(left, right, str) {
+        let oddpalindrome = "";
+        oddpalindrome += str[left];
+        left--;
+        right++;
+        while (left >= 0 && right < str.length) {
+          if (str[left] === str[right]) {
+            oddpalindrome += str[left];
+            oddpalindrome = str[left] + oddpalindrome;
+            left--;
+            right++;
+          } else break;
+        }
+        return oddpalindrome;
+      }
+      function checkEven(left, right, str) {
+        let evenpalindrome = "";
+        while (left >= 0 && right < str.length) {
+          if (str[left] === str[right]) {
+            evenpalindrome += str[left];
+            evenpalindrome = str[left] + evenpalindrome;
+            left--;
+            right++;
+          } else break;
+        }
+        return evenpalindrome;
+      }
+      console.log(findLongestPalindrome("madam"));
+      console.log(findLongestPalindrome("123321"));
+      console.log(findLongestPalindrome("mameam"));
+      console.log(findLongestPalindrome("abcdcdd"));
+      console.log(findLongestPalindrome("aabbade"));
+      console.log(findLongestPalindrome("kleffelg"));
+      console.log(findLongestPalindrome("racecarmadam"));
+    </script>
+  </body>
+</html>

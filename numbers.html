@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function formatCurrency(amt, code) {
+        let ans = "";
+        let cnt = 0;
+        let stIndex = amt.length - 1;
+        if (amt.includes(".")) {
+          for (let i = amt.length - 1; i >= 0; i--) {
+            ans = amt[i] + ans;
+            if (amt[i] === ".") {
+              stIndex = i - 1;
+              break;
+            }
+          }
+        }
+        let flag = false;
+        for (let i = stIndex; i >= 0; i--) {
+          ans = amt[i] + ans;
+          cnt++;
+          if (
+            (cnt === 3 && code !== "INR") ||
+            (code === "INR" && flag == false && cnt === 3)
+          ) {
+            ans = "," + ans;
+            cnt = 0;
+            flag = true;
+          } else if (code === "INR" && cnt === 2 && flag !== false) {
+            ans = "," + ans;
+            cnt = 0;
+          }
+        }
+        if (code === "INR") ans = "₹" + ans;
+        else if (code === "USD") ans = "€" + ans;
+        else ans = "$" + ans;
+        return ans;
+      }
+      console.log(formatCurrency("50203457.334", "USD"));
+      console.log(formatCurrency("50203457.334", "INR"));
+      console.log(formatCurrency("50203457.334", "EUR"));
+    </script>
+  </body>
+</html>

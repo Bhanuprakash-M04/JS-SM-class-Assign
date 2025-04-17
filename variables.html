@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //global scope
+      let global = 5;
+      function check() {
+        console.log(global);
+      }
+      check();
+      console.log(global);
+
+      // local
+      function greet() {
+        let local = 20;
+        console.log(local);
+      }
+      greet();
+      // console.log(local); => local not defined error
+
+      // block scope
+      // let and const are block scoped
+      function exam() {
+        let x = 25;
+        console.log(x);
+      }
+      exam();
+      // console.log(x); => x is not defined
+
+      // var is function scoped
+      function example() {
+        if (true) {
+          var y = 34;
+        }
+        console.log(y);
+      }
+      example();
+
+      // variable shadowing
+      let outer = 15;
+      function hello() {
+        let outer = 20;
+        console.log(outer);
+      }
+      hello();
+      console.log(outer);
+    </script>
+  </body>
+</html>
