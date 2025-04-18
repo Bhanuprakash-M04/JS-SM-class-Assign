@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function processTansactions(transactions) {
+        let finalBalance = {
+          totalBalance: 0,
+          totalDeposit: 0,
+          totalWithdrawal: 0,
+        };
+
+        for (let obj of transactions) {
+          finalBalance.totalBalance += obj.deposit;
+          finalBalance.totalBalance -= obj.withdraw;
+          finalBalance.totalDeposit += obj.deposit;
+          finalBalance.totalWithdrawal += obj.withdraw;
+        }
+        return finalBalance;
+      }
+      const arr1 = [
+        {
+          deposit: 100,
+          withdraw: 200,
+        },
+        {
+          deposit: 3000,
+          withdraw: 500,
+        },
+        {
+          deposit: 500,
+          withdraw: 400,
+        },
+      ];
+      const arr2 = [
+        {
+          deposit: 2347,
+          withdraw: 4387,
+        },
+        {
+          deposit: 43428,
+          withdraw: 347,
+        },
+        {
+          deposit: 34345,
+          withdraw: 34283,
+        },
+      ];
+      console.log(processTansactions(arr2));
+      console.log(processTansactions(arr1));
+    </script>
+  </body>
+</html>

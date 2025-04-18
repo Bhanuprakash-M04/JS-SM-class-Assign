@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function book(title, author, ISBN) {
+        this.title = title;
+        this.author = author;
+        this.ISBN = ISBN;
+        this.isBorrowed = false;
+        this.returnBook = function () {
+          if (this.isBorrowed) {
+            this.isBorrowed = false;
+            console.log("Book returned");
+          } else console.log("Book is Not Borrowed");
+        };
+        this.borrow = function () {
+          if (!this.isBorrowed) {
+            this.isBorrowed = true;
+            console.log("Book is borrowed");
+          } else console.log("Book was already borrowed");
+        };
+      }
+      function library() {
+        this.books = [];
+        this.addBook = function (book) {
+          this.books.push(book);
+          console.log(`Added ${book.title} to the library`);
+        };
+        this.findBooksByISBN = function (ISBN) {
+          return this.books.find((book) => book.ISBN === ISBN);
+        };
+        this.listAvailableBooks = function () {
+          let totalBooks = "";
+          for (let book of this.books) {
+            if (!book.isBorrowed) totalBooks += `${book.title} `;
+          }
+          return totalBooks;
+        };
+        this.listBorrowedBooks = function () {
+          let totalBooks = "";
+          for (let book of this.books) {
+            if (book.isBorrowed) totalBooks += `${book.title} `;
+          }
+          return totalBooks;
+        };
+      }
+
+      const book1 = new book("Good times", "geoegre", "123");
+      const book2 = new book("Happy Days", "shekhar", "43456");
+      const book3 = new book("Life is Beautiful", "kammula", "347");
+      const mylibrary = new library();
+      mylibrary.addBook(book1);
+      mylibrary.addBook(book2);
+      mylibrary.addBook(book3);
+
+      book1.borrow();
+
+      book1.borrow();
+
+      console.log(mylibrary.listAvailableBooks());
+      console.log(mylibrary.listBorrowedBooks());
+
+      book1.returnBook();
+
+      const find = mylibrary.findBooksByISBN("43456");
+      console.log(find);
+    </script>
+  </body>
+</html>
